@@ -1,0 +1,12 @@
+{
+  "name": "50lines-high-resolution",
+  "version": "1.0.0",
+  "description": "Copy with high resolution",
+  "main": "index.js",
+  "repository": "https://github.com/Fertern/50lines-high-resolution.git",
+  "author": "Fertern <ferternever@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.6.1"
+  }
+}
