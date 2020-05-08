@@ -5,9 +5,10 @@ const fileInput = document.getElementById('file-input');
 const sourceCtx = sourceCanvas.getContext('2d');
 const resultCtx = resultCanvas.getContext('2d');
 
-const HEIGHT = 4000;
+const HEIGHT = 8000;
 const linesCount = 50;
 const wave = HEIGHT / 700;
+//const wave = (HEIGHT / 700 / 100) * 90;
 
 let imageWidth = 0;
 let imageHeight = 0;
