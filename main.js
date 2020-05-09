@@ -1,14 +1,14 @@
 const sourceCanvas = document.getElementById('source');
 const resultCanvas = document.getElementById('result');
 const fileInput = document.getElementById('file-input');
+const actionButton = document.getElementById('actionButton');
+const labelNumber = document.querySelectorAll('.variables > div');
+const swapButton = document.getElementById('swap');
 
 const sourceCtx = sourceCanvas.getContext('2d');
 const resultCtx = resultCanvas.getContext('2d');
 
-const HEIGHT = 8000;
-const linesCount = 50;
-const wave = HEIGHT / 700;
-//const wave = (HEIGHT / 700 / 100) * 90;
+console.log(document.querySelectorAll('.variables > div'));
 
 let imageWidth = 0;
 let imageHeight = 0;
@@ -34,9 +34,30 @@ const loadImage = (src) =>
     img.src = src;
   });
 
-const decel = (x) => 1 - (x - 1) * (x - 1); // easing
+const decel = (x) => 1 - (x - 1) * (x - 1);
 
-fileInput.addEventListener('input', async (e) => {
+swapButton.addEventListener('click', () => {
+  const prevColor = document.getElementById('color').value;
+  document.getElementById('color').value = document.getElementById(
+    'background'
+  ).value;
+  document.getElementById('background').value = prevColor;
+});
+
+actionButton.addEventListener('click', async (e) => {
+  console.log();
+  const HEIGHT = document.getElementById('resolution').value || 700;
+  const linesCount = document.getElementById('linesCount').value || 50;
+  const waveFactor = document.getElementById('waveFactor').value || 700;
+  const mainColor = document.getElementById('color').value;
+  const backgrond = document.getElementById('background').value;
+
+  const wave = HEIGHT / waveFactor;
+
+  const values = [HEIGHT, linesCount, waveFactor, mainColor, backgrond];
+
+  labelNumber.forEach((div, index) => (div.innerHTML = values[index]));
+
   console.log(e);
   if (fileInput.files && fileInput.files[0]) {
     console.log(fileInput.files[0]);
@@ -44,7 +65,7 @@ fileInput.addEventListener('input', async (e) => {
     const img = await loadImage(dataUrl);
 
     imageWidth = Math.floor((img.width * HEIGHT) / img.height);
-    imageHeight = HEIGHT;
+    imageHeight = HEIGHT || 700;
 
     updateCanvasSize();
 
@@ -65,9 +86,10 @@ fileInput.addEventListener('input', async (e) => {
       pix[i + 3] = 255;
     }
 
-    // let points = []
+    resultCtx.strokeStyle = mainColor;
+    resultCtx.fillStyle = backgrond;
+    resultCtx.fillRect(0, 0, imageWidth, imageHeight);
 
-    resultCtx.fillStyle = '#ffffff';
     resultCtx.fillRect(0, 0, imageWidth, imageHeight);
 
     for (let y = 0; y < linesCount; ++y) {
@@ -80,8 +102,6 @@ fileInput.addEventListener('input', async (e) => {
       for (let x = 0; x < imageWidth; ++x) {
         const c =
           pix[(((y * imageHeight) / linesCount + 6) * imageWidth + x) * 4];
-
-        // points.push([x, y * imageHeight / 50 + 6])
 
         l += (255 - c) / 255;
 

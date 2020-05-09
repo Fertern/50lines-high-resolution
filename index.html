@@ -6,53 +6,98 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="style.css" />
     <title>50 Lines</title>
-    <style>
-      #source {
-        display: none;
-        position: fixed;
-        z-index: -1;
-        left: -1000vw;
-      }
-
-      body {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        font-family: Roboto, sans-serif;
-      }
-
-      .subscribe-box {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        z-index: 10;
-        padding: 7px;
-        line-height: 1.5;
-        background: white;
-      }
-    </style>
   </head>
   <body>
-    <canvas id="source"></canvas>
-    <canvas id="result"></canvas>
-    <h1>CURRENT RESOLUTION: 8000</h1>
-    <input type="file" accept="image/*" id="file-input" />
+    <div class="container">
+      <div class="labels">
+        <h2 class="variables" id="resolutionLabel">
+          <span>Current resolution:</span>
+          <div>700</div>
+        </h2>
+        <h2 class="variables" id="linesCountLabel">
+          <span>Current lines count:</span>
+          <div>50</div>
+        </h2>
+        <h2 class="variables" id="waveFactorLabel">
+          <span>Current wave factor:</span>
+          <div>700</div>
+        </h2>
+        <h2 class="variables" id="colorLabel">
+          <span>Current color:</span>
+          <div>#000000</div>
+        </h2>
+        <h2 class="variables" id="backgroundLabel">
+          <span>Current backgronud:</span>
+          <div>#FFFFF</div>
+        </h2>
+      </div>
+      <div class="inputs">
+        <div>
+          <h3>Resolution</h3>
+          <input type="text" id="resolution" />
+          <input
+            type="range"
+            min="0"
+            max="12000"
+            value="700"
+            id="resolutionRange"
+          />
+        </div>
+        <div>
+          <h3>Lines count</h3>
+          <input type="text" id="linesCount" />
+          <input
+            type="range"
+            min="0"
+            max="12000"
+            value="50"
+            id="linesCountRange"
+          />
+        </div>
+        <div>
+          <h3>Wave factor</h3>
+          <input type="text" id="waveFactor" />
+          <input
+            type="range"
+            min="0"
+            max="12000"
+            value="700"
+            id="waveFactorRange"
+          />
+        </div>
+        <div class="colorsBlock">
+          <div>
+            <h3>Main color</h3>
+            <input type="color" id="color" />
+          </div>
+          <div>
+            <h3>Background color</h3>
+            <input type="color" id="background" value="#FFFFFF" />
+          </div>
+        </div>
+        <button id="swap">Swap colors</button>
+        <input type="file" accept="image/*" id="file-input" />
+        <button id="actionButton">Apply and draw</button>
+      </div>
+    </div>
+    <div class="resultBox">
+      <canvas id="source"></canvas>
+      <canvas id="result"></canvas>
+    </div>
     <script src="main.js"></script>
     <div class="subscribe-box">
       <a
+        rel="noopener noreferrer"
         href="https://github.com/Loskir/50-lines"
         target="_blank"
-        rel="noopener noreferrer"
-        >Source</a
-      >. Subscribe to my channel:
+        >Original bot</a
+      >. Also thanks
       <a
+        rel="noopener noreferrer"
         href="https://tttttt.me/loskirs"
         target="_blank"
-        rel="noopener noreferrer"
         >@Loskirs</a
       >
     </div>

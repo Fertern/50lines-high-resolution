@@ -1,0 +1,98 @@
+body {
+  font-family: Roboto, sans-serif;
+}
+
+#source {
+  display: none;
+}
+#result {
+  position: fixed;
+  top: 5%;
+  right: 5%;
+}
+#resolutionRange,
+#linesCountRange,
+#waveFactorRange {
+  display: none;
+}
+
+.subscribe-box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding: 7px;
+  line-height: 1.5;
+  background: white;
+}
+
+button {
+  font-size: 25px;
+}
+#file-input {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.container {
+  width: 400px;
+  position: fixed;
+  top: 8%;
+  left: 5%;
+  background-image: url(wavecut.png);
+  padding: 2%;
+  border-radius: 25px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type='text'] {
+  background: transparent;
+  margin-top: 15px;
+  border-radius: 5px;
+  text-align: right;
+  font-size: 25px;
+  height: 35px;
+  width: 200px;
+}
+
+.colorsBlock {
+  margin-bottom: 10px;
+}
+.inputs > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.variables {
+  text-align-last: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+  #result {
+    position: static;
+    margin: 0 auto;
+  }
+  .container {
+    position: static !important;
+    margin: 5% auto;
+    width: 600px !important;
+  }
+  body {
+    font-size: 25px;
+  }
+  button {
+    font-size: 50px;
+    margin-top: 30px;
+  }
+  #file-input {
+    margin-top: 30px;
+    font-size: 50px;
+  }
+  input[color] {
+    font-size: 25px;
+  }
+}
